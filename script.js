@@ -5,6 +5,8 @@ let songIndex =0;
 let audioElement =new Audio('songs/1.mp3');
 let masterPlay= document.querySelector('#masterPlay');
 let myProgressBar =document.querySelector('#myProgress');
+let gif=document.querySelector('#gif');
+let songItems =Array.from(document.querySelectorAll('.songItem'));
 
 
 let songs=[
@@ -20,23 +22,56 @@ let songs=[
     {songName:"Standing In The Open", filePath:"songs/10.mp3" ,coverPath:"covers/10.jpg"},
 ]
 
+songItems.forEach((element,i)=>{
+    element.getElementsByTagName("img")[0].src =songs[i].coverPath;
+    element.getElementsByClassName("songName")[0].innerText =songs[i].songName;
+
+})
 //Handle play/pause click
 masterPlay.addEventListener('click',()=>{
     if(audioElement.paused || audioElement.currentTime<=0){
         audioElement.play();
         masterPlay.classList.remove('fa-circle-play');
         masterPlay.classList.add('fa-circle-pause');
+        gif.style.opacity=1;
     }
     else{
         audioElement.pause();
         masterPlay.classList.remove('fa-circle-pause');
         masterPlay.classList.add('fa-circle-play');
-       
+        gif.style.opacity=0;
     }
 })
 
 //Listen to Events
-myProgressBar.addEventListener('timeupdate',()=>{
-    console.log("timeupdate");
+audioElement.addEventListener('timeupdate',()=>{
+   
 
+    progress =parseInt((audioElement.currentTime/audioElement.duration)*100);
+   
+    myProgressBar.value=progress;
+})
+
+myProgressBar.addEventListener('change',()=>{
+    audioElement.currentTime=myProgressBar.value*audioElement.duration/100;
+})
+
+const makeAllPlays =()=>{
+    Array.from(document.getElementsByClassName("songItemPlay")).forEach((element)=>{
+        element.target.classList.remove('fa-circle-pause');
+        element.target.classList.add('fa-circle-play');
+
+    })
+}
+
+
+Array.from(document.getElementsByClassName("songItemPlay")).forEach((element)=>{
+    element.addEventListener("click",(e)=>{
+        makeAllPlays();
+        e.target.classList.remove('fa-circle-play');
+        e.target.classList.add('fa-circle-pause');
+        audioElement.src='songs/3.mp3';
+        audioElement.currentTime=0;
+        audioElement.play();
+    })
 })
