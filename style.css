@@ -35,3 +35,61 @@ nav ul li{
     font-weight: bolder;
     font-size:1.3rem ;
 }
+
+.container{
+    background-color: #000;
+    color: #fff;
+    font-family:"Varela Round", serif; 
+    display: flex;
+    margin: 23px auto;
+    width: 70%;
+    min-height: 70vh;
+    border-radius: 12px;
+    padding: 34px;
+    background-image: url(img/bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.songItem{
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    width: 80%;
+    color: #000;
+    margin: 12px 0 ;
+    border-radius: 35px;
+}
+.songItem img{
+    width: 43px;
+    margin: 0 23px;
+    border-radius: 50%;
+}
+
+.timestamp{
+    margin: 0 23px;
+}
+/* This is bottom styling */
+
+.bottom{
+    position: sticky;
+    bottom: 0;
+    height: 130px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    color: #fff;
+    
+}
+#myProgressar{
+    width: 80%;
+    margin-bottom: 15px ;
+}
+
+.icons i{
+    cursor: pointer;
+}
