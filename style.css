@@ -95,15 +95,17 @@ nav ul li{
 .songInfo{
     position: absolute;
     left: 10vw;
+    font-family:"Varela Round", serif; 
 }
 
 .songInfo img{
     opacity: 0;
     transition:opacity 1s ease-in;
 }
-#myProgressar{
+#myProgress{
     width: 80%;
     margin-bottom: 15px ;
+    cursor: pointer;
 }
 
 .icons i{
